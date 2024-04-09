@@ -1,0 +1,26 @@
+__pycache__/
+**/*.pyc
+**/__pycache__/
+
+bin
+ref/*
+ref
+
+data/**/raw/
+data
+
+.vscode
+results
+cache
+checkpoints
+_playground.py
+
+
+.idea
+.pytest_cache
+
+.pytest_cache
+runs # tensorboard
+runs/*
+share
+logs

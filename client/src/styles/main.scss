@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex Mono:wght@300;400;700&display=swap');
+
+// body {
+//     @apply m-0;
+//     font-family: Helvetica Neue;
+// }
+
+.font-mono {
+    font-family: 'Incconsolata', monospace;
+}

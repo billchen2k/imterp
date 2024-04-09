@@ -1,0 +1,127 @@
+device: cuda
+
+# Always generate dataset even its already generated.
+#   Requires raw data if set to True.
+always_gen_dataset: false
+
+# Save model & output every save_epoch
+save_epoch: 50
+
+# Parameters used for training
+train:
+  ushcn:
+    epoch: 2000
+    batch_size: 8
+    dropout: 0.05
+    lr: 0.0001
+    dataset: ushcn
+    k: 5
+    z: 32
+    p: 16
+    pe: 12
+    pe_scales: 12
+    t_sr: 1
+    wt: 5
+    spec: STSTr
+    ignore0: false
+    max_nodes: 1500
+    unknown_rate: 0.4
+    masked_rate: 0.3
+    train_rate: 0.7
+    nopna: false
+
+
+  uspm25:
+    epoch: 2000
+    batch_size: 8
+    dropout: 0.05
+    lr: 0.0001
+    dataset: uspm25
+    k: 5
+    z: 32
+    p: 32
+    pe: 12
+    pe_scales: 12
+    t_sr: 1
+    wt: 5
+    spec: STSTr
+    ignore0: true
+    unknown_rate: 0.4
+    masked_rate: 0.3
+    train_rate: 0.65
+    nopna: false
+
+  catmp:
+    epoch: 2000
+    batch_size: 8
+    dropout: 0
+    lr: 0.0001
+    dataset: catmp
+    k: 4
+    z: 32
+    p: 32
+    pe: 12
+    pe_scales: 12
+    t_sr: 1
+    wt: 5
+    spec: STSTt # tanh activation as temperature (have minus values)
+    ignore0: false # Temperature can be 0.
+    unknown_rate: 0.3 # catmp has only 141 sensors. Use a low unknown rate.
+    masked_rate: 0.3
+    train_rate: 0.7
+    nopna: false
+
+  dtaqi:
+    epoch: 3000
+    batch_size: 4
+    dropout: 0.05
+    lr: 0.0001
+    dataset: dtaqi
+    k: 5
+    z: 32
+    p: 32
+    pe: 12
+    pe_scales: 12
+    t_sr: 4
+    wt: 5
+    spec: STSTr
+    ignore0: true
+    unknown_rate: 0.1 # 0.4 for visual, 0.1 (also for masked rate) for TSR
+    masked_rate: 0.1
+    train_rate: 0.7
+    nopna: false
+
+# Parameter used for spatial interpolation
+interp:
+
+  ushcn:
+    method: rbf
+    params:
+      neighbors: 100
+      smoothing: 0.5
+      epsilon: 1.5
+      kernel: gaussian
+
+  uspm25:
+    method: rbf
+    params:
+      neighbors: 100
+      smoothing: 0.5
+      epsilon: 0.5
+      kernel: gaussian
+
+  catmp:
+    method: rbf
+    params:
+      neighbors: 100
+      smoothing: 0.2
+      epsilon: 2.2
+      kernel: gaussian
+
+  dtaqi:
+    method: rbf
+    params:
+      neighbors: 100
+      smoothing: 0.2
+      epsilon: 3.5
+      kernel: gaussian
